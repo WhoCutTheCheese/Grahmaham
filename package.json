@@ -1,0 +1,17 @@
+{
+  "name": "grahmaham",
+  "version": "1.0.0",
+  "description": "A simple and easy to use moderation bot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Zironic Devs",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^12.5.1",
+    "filesystem": "^1.0.1",
+    "fs": "^0.0.1-security",
+    "mongoose": "^5.11.18"
+  }
+}
