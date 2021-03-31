@@ -17,4 +17,4 @@ bot.on('ready', () => {
 
 
 client.mongoose.init();
-bot.login("NzMzODg1MTg1NDk3NDk3Njgy.XxJp1w.qQoaK2JOB1CIWyCI00WalmfJZog");
+bot.login(process.env.token);
