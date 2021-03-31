@@ -16,5 +16,5 @@ bot.on('ready', () => {
 
 
 
-client.mongoose.init();
+bot.mongoose.init();
 bot.login(process.env.token);
