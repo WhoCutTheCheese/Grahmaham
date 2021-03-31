@@ -11,10 +11,21 @@ bot.on('ready', () => {
         url: "https://www.twitch.tv/WhoCutTehCheese"
     });
 })
+bot.on('message', message =>{
+    if (!message.content.startsWith(prefix)) return;
+
+    let args = message.content.substring(prefix.length).split(" ");
+    
+    switch(args[0]) {
+        case "prefix":
+           
+    }
+
+
+})
 
 
 
 
 
-client.mongoose.init();
-bot.login("NzMzODg1MTg1NDk3NDk3Njgy.XxJp1w.qQoaK2JOB1CIWyCI00WalmfJZog");
+bot.login(process.env.token);
