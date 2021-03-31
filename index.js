@@ -11,6 +11,13 @@ bot.on('ready', () => {
         url: "https://www.twitch.tv/WhoCutTehCheese"
     });
 })
+bot.on('message', message =>{
+    if (!message.content.startsWith(prefix)) return;
+
+    let args = message.content.substring(prefix.length).split(" ");
+
+
+})
 
 
 
