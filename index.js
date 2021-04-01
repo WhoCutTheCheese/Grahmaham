@@ -46,6 +46,10 @@ bot.on('message', async message => {
         case "prefix":
             bot.commands.get('prefix').run(bot, message, args);
     }
+    switch (args[0]) {
+        case "help":
+            bot.commands.get('help').run(bot, message, args);
+    }
 })
 
 bot.mongoose.init();
