@@ -13,9 +13,17 @@ bot.on('ready', () => {
     });
 })
 bot.mongoose = require('./utils/mongoose.js')
-
+bot.on("guildCreate", async guild => {
+    const newGuild = new Guild({
+        guildID: guild.id,
+        guildName: guild.name,
+        prefix: "!!",
+    });
+    newGuild.save().catch(err => console.log(err));
+});
 bot.on('message', message => {
     if (!message.content.startsWith(prefix)) return;
+
 
     let args = message.content.substring(prefix.length).split(" ");
     switch (args[0]) {
@@ -35,7 +43,7 @@ bot.on('message', message => {
                         _id: mongoose.Types.ObjectId(),
                         guildID: message.guild.id,
                         guildName: message.guild.name,
-                        prefix: process.env.PREFIX
+                        prefix: "!!",
                     })
 
                     newGuild.save()
