@@ -59,6 +59,6 @@ module.exports = {
             .setColor("GREEN")
             .addField("Prefix Updated", `Your guild's prefix has been updated to \`${args[1]}\``)
             .setTimestamp()
-        return message.channel.send(setPrefix);
+        return message.channel.send(setPrefix).then(m => m.delete({timeout: 10000}));
     }
 }
