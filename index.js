@@ -29,7 +29,7 @@ bot.on("guildCreate", async guild => {
         guildID: guild.id,
         guildName: guild.name,
         prefix: "!!",
-        color: "#00ff7b",
+        color: "00ff7b",
     });
     newGuild.save().catch(err => console.log(err));
 
