@@ -32,6 +32,8 @@ module.exports = {
                 .setColor(`${settings.color}`)
                 .setDescription(`Use \`${settings.prefix}help <command>\` for more information on a command.`)
                 .addField("Information", `\`${settings.prefix}help\`, \`${settings.prefix}serverinfo\`, \`${settings.prefix}userinfo\``)
+                .addField("Utility", `\`${settings.prefix}prefix\`, \`${settings.prefix}logs\``)
+                .setFooter(`${message.author} - ${settings.guildName}`)
             message.channel.send(helpMenu)
         }
     }
