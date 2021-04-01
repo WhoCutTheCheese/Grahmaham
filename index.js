@@ -74,7 +74,9 @@ bot.on('message', async message => {
                 return message.channel.send(noPrefix).then(m => m.delete({timeout: 10000}));
             };
             if (args[1].length > 3) {
-                return message.channel.send(`This prefix is too long, please choose a shorter prefix.`)
+                const tooLong = new Discord.MessageEmbed()
+                    .setDescription(":x: This prefix is too long, please choose another.")
+                return message.channel.send(tooLong)
             }
 
             await settings.updateOne({
@@ -83,7 +85,7 @@ bot.on('message', async message => {
             const setPrefix = new Discord.MessageEmbed()
                 .setTitle("Prefix")
                 .setColor("GREEN")
-                .addField("Prefix Updated", `Your guild's prefix has been updated to \`${settings.prefix}\``)
+                .addField("Prefix Updated", `Your guild's prefix has been updated to \`${args[1]}\``)
                 .setTimestamp()
             return message.channel.send(setPrefix);
     }
