@@ -57,9 +57,12 @@ bot.on('message', async message => {
                 }
             });
     
-            if (args.length < 1) {
+            if (!args[1]) {
                 return message.channel.send(`You must specify a prefix to set for this server! Your current server prefix is \`${settings.prefix}\``).then(m => m.delete({timeout: 10000}));
             };
+            if (args[1] > 3){
+                return message.channel.send(`This prefix is too long, please choose a shorter prefix.`)
+            }
     
             await settings.updateOne({
                 prefix: args[1]
