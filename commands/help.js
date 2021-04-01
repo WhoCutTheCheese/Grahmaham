@@ -31,6 +31,7 @@ module.exports = {
                 .setTitle("Grahmaham Help")
                 .setColor(`${settings.color}`)
                 .setDescription("Use `!help <command>` for more information on a command.")
+                .addField("Information", `\`${settings.prefix}help\`, \`${settings.prefix}serverinfo\`, \`${settings.prefix}userinfo\``)
             message.channel.send(helpMenu)
         }
     }
