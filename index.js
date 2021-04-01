@@ -17,9 +17,6 @@ bot.on('message', message => {
     if (!message.content.startsWith(prefix)) return;
 
     let args = message.content.substring(prefix.length).split(" ");
-
-
-
     switch (args[0]) {
         case "prefix":
 
