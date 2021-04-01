@@ -14,8 +14,9 @@ bot.on('ready', () => {
 })
 const noPermissions = new Discord.MessageEmbed()
     .setDescription(":x: You do not have the required permission to use this command.")
+    .setColor("RED")
 bot.mongoose = require('./utils/mongoose.js')
-bot.on("guildCreate", async guild => {
+bot.on("guildCreate", async guild => {``
     const newGuild = new Guild({
         guildID: guild.id,
         guildName: guild.name,
@@ -76,6 +77,7 @@ bot.on('message', async message => {
             if (args[1].length > 3) {
                 const tooLong = new Discord.MessageEmbed()
                     .setDescription(":x: This prefix is too long, please choose another.")
+                    .setColor("RED")
                 return message.channel.send(tooLong)
             }
 
