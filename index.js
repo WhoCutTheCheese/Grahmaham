@@ -20,8 +20,13 @@ bot.on("guildCreate", async guild => {
         prefix: "!!",
     });
     newGuild.save().catch(err => console.log(err));
+
 });
-bot.on('message', message => {
+bot.on('message', async message => {
+    const settings = await Guild.findOne({
+        guildID: message.guild.id
+})
+    const prefix = settings.prefix;
     if (!message.content.startsWith(prefix)) return;
 
 
@@ -29,12 +34,10 @@ bot.on('message', message => {
     switch (args[0]) {
         case "prefix":
             if (!message.member.hasPermission('MANAGE_GUILD')) {
-                return message.channel.send('You do not have permission to use this command!').then(m => m.delete({
-                    timeout: 10000
-                }));
+                return message.channel.send('You do not have permission to use this command!').then(m => m.delete({timeout: 10000}));
             };
-
-            const settings = Guild.findOne({
+    
+            const settings = await Guild.findOne({
                 guildID: message.guild.id
             }, (err, guild) => {
                 if (err) console.error(err)
@@ -43,29 +46,25 @@ bot.on('message', message => {
                         _id: mongoose.Types.ObjectId(),
                         guildID: message.guild.id,
                         guildName: message.guild.name,
-                        prefix: "!!",
+                        prefix: "!!"
                     })
-
+    
                     newGuild.save()
-                        .then(result => console.log(result))
-                        .catch(err => console.error(err));
-
-                    return message.channel.send('This server was not in our database! We have added it, please retype this command.').then(m => m.delete({
-                        timeout: 10000
-                    }));
+                    .then(result => console.log(result))
+                    .catch(err => console.error(err));
+    
+                    return message.channel.send('This server was not in our database! We have added it, please retype this command.').then(m => m.delete({timeout: 10000}));
                 }
             });
-
+    
             if (args.length < 1) {
-                return message.channel.send(`You must specify a prefix to set for this server! Your current server prefix is \`${settings.prefix}\``).then(m => m.delete({
-                    timeout: 10000
-                }));
+                return message.channel.send(`You must specify a prefix to set for this server! Your current server prefix is \`${settings.prefix}\``).then(m => m.delete({timeout: 10000}));
             };
-
-            settings.updateOne({
+    
+            await settings.updateOne({
                 prefix: args[0]
             });
-
+    
             return message.channel.send(`Your server prefix has been updated to \`${args[0]}\``);
     }
 })
