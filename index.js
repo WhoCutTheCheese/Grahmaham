@@ -11,21 +11,20 @@ bot.on('ready', () => {
         url: "https://www.twitch.tv/WhoCutTehCheese"
     });
 })
-bot.on('message', message =>{
+bot.mongoose = require('./utils/mongoose.js')
+
+bot.on('message', message => {
     if (!message.content.startsWith(prefix)) return;
 
     let args = message.content.substring(prefix.length).split(" ");
-    
-    switch(args[0]) {
+
+
+
+    switch (args[0]) {
         case "prefix":
-           
+
     }
-
-
 })
 
-
-
-
-
+bot.mongoose.init();
 bot.login(process.env.token);

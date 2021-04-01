@@ -9,9 +9,9 @@
   "author": "Zironic Devs",
   "license": "ISC",
   "dependencies": {
-    "discord.js": "^12.5.1",
+    "discord.js": "^12.5.2",
     "filesystem": "^1.0.1",
     "fs": "^0.0.1-security",
-    "mongoose": "^5.11.18"
+    "mongoose": "^5.12.3"
   }
 }
