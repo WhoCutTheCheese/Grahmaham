@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-const settings 
+const Guild = require("../models/prefix"); 
 module.exports = {
     name: 'help',
     description: 'List of functions and commands of the bot.',
@@ -13,8 +13,8 @@ module.exports = {
                     _id: mongoose.Types.ObjectId(),
                     guildID: message.guild.id,
                     guildName: message.guild.name,
-                    prefix: `${settings.prefix}`,
-                    color: `${settings.color}`,
+                    prefix: `!!`,
+                    color: "00ff7b",
                 })
 
                 newGuild.save()

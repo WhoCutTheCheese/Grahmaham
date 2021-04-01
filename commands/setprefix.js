@@ -20,7 +20,7 @@ module.exports = {
                     guildID: message.guild.id,
                     guildName: message.guild.name,
                     prefix: "!!",
-                    color: `${settings.color}`,
+                    color: `00ff7b`,
                 })
 
                 newGuild.save()
