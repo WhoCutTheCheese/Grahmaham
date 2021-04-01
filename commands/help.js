@@ -30,7 +30,7 @@ module.exports = {
             const helpMenu = new Discord.MessageEmbed()
                 .setTitle("Grahmaham Help")
                 .setColor(`${settings.color}`)
-                .setDescription("Use `!help <command>` for more information on a command.")
+                .setDescription(`Use \`${settings.prefix}help <command>\` for more information on a command.`)
                 .addField("Information", `\`${settings.prefix}help\`, \`${settings.prefix}serverinfo\`, \`${settings.prefix}userinfo\``)
             message.channel.send(helpMenu)
         }
