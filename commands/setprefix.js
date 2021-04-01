@@ -1,4 +1,4 @@
-const prefix = require("../models/prefix")
+const Guild = require("./models/prefix");
 
 module.exports = {
     name: 'prefix',
