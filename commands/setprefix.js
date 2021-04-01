@@ -1,5 +1,5 @@
 const Guild = require("../models/prefix");
-
+const Discord = require('discord.js')
 module.exports = {
     name: 'prefix',
     description: "Set your server's prefix.",
