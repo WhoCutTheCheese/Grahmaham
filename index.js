@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const bot = new Discord.Client();
 const mongoose = require('mongoose');
-const version = "ALPHA-1.0.0";
+const version = "ALPHA-1.0.1";
 bot.on('ready', () => {
     console.log(`Grahmaham Version: ${version} is starting...`);
     console.log(` `)
