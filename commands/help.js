@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 module.exports = {
     name: 'help',
     description: 'List of functions and commands of the bot.',
-    run: async (bot, messsage, args) => {
+    run: async (bot, message, args) => {
         if(!args[1]) {
             const helpMenu = new Discord.MessageEmbed()
                 .setTitle("Grahmaham Help")
