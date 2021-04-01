@@ -12,6 +12,8 @@ bot.on('ready', () => {
         url: "https://www.twitch.tv/WhoCutTehCheese"
     });
 })
+const noPermissions = new Discord.MessageEmbed()
+    .setDescription(":x: You do not have the required permission to use this command.")
 bot.mongoose = require('./utils/mongoose.js')
 bot.on("guildCreate", async guild => {
     const newGuild = new Guild({
@@ -34,7 +36,7 @@ bot.on('message', async message => {
     switch (args[0]) {
         case "prefix":
             if (!message.member.hasPermission('MANAGE_GUILD')) {
-                return message.channel.send('You do not have permission to use this command!').then(m => m.delete({
+                return message.channel.send(noPermissions).then(m => m.delete({
                     timeout: 10000
                 }));
             };
@@ -78,8 +80,12 @@ bot.on('message', async message => {
             await settings.updateOne({
                 prefix: args[1]
             });
-
-            return message.channel.send(`Your server prefix has been updated to \`${args[1]}\``);
+            const setPrefix = new Discord.MessageEmbed()
+                .setTitle("Prefix")
+                .setColor("GREEN")
+                .addField("Prefix Updated", `Your guild's prefix has been updated to \`${settings.prefix}\``)
+                .setTimestamp()
+            return message.channel.send(setPrefix);
     }
 })
 
