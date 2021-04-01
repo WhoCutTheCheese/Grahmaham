@@ -19,7 +19,8 @@ module.exports = {
                     _id: mongoose.Types.ObjectId(),
                     guildID: message.guild.id,
                     guildName: message.guild.name,
-                    prefix: "!!"
+                    prefix: "!!",
+                    color: `${settings.color}`,
                 })
 
                 newGuild.save()
@@ -35,7 +36,7 @@ module.exports = {
         if (!args[1]) {
             const noPrefix = new Discord.MessageEmbed()
                 .setTitle("Prefix")
-                .setColor("RED")
+                .setColor(`${settings.color}`)
                 .setDescription("Change the prefix for your server.")
                 .addField("Current Prefix:", `\`${settings.prefix}\``)
                 .addField("Change Prefix:", `\`${settings.prefix}prefix <New Prefix>\``)
@@ -56,7 +57,7 @@ module.exports = {
         });
         const setPrefix = new Discord.MessageEmbed()
             .setTitle("Prefix")
-            .setColor("GREEN")
+            .setColor(`${settings.color}`)
             .addField("Prefix Updated", `Your guild's prefix has been updated to \`${args[1]}\``)
             .setTimestamp()
         return message.channel.send(setPrefix).then(m => m.delete({timeout: 10000}));

@@ -24,11 +24,12 @@ const noPermissions = new Discord.MessageEmbed()
     .setDescription(":x: You do not have the required permission to use this command.")
     .setColor("RED")
 bot.mongoose = require('./utils/mongoose.js')
-bot.on("guildCreate", async guild => {``
+bot.on("guildCreate", async guild => {
     const newGuild = new Guild({
         guildID: guild.id,
         guildName: guild.name,
         prefix: "!!",
+        color: "#00ff7b",
     });
     newGuild.save().catch(err => console.log(err));
 
