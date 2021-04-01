@@ -62,10 +62,10 @@ bot.on('message', async message => {
             };
     
             await settings.updateOne({
-                prefix: args[0]
+                prefix: args[1]
             });
     
-            return message.channel.send(`Your server prefix has been updated to \`${args[0]}\``);
+            return message.channel.send(`Your server prefix has been updated to \`${args[1]}\``);
     }
 })
 
