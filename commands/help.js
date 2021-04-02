@@ -64,7 +64,7 @@ module.exports = {
                 .setDescription("SOON™️")
                 .addField("Permissions:", "`MANAGE_SERVER`")
                 .addField("Command Details:", "Set a log channel and edit and customize logs.")
-                .addField("Usage:", `\`${settings.prefix}logs\` \n \n \n\`setmessagechannel <#channel> \nsetchanneleditchannel <#channel> \nsetrolechannel <#channel> \nsetbanchannel <#channel>\``)
+                .addField("Usage:", `\`${settings.prefix}logs\` \n \n\`setmessagechannel <#channel> \nsetchanneleditchannel <#channel> \nsetrolechannel <#channel> \nsetbanchannel <#channel>\``)
                 .setFooter(`${message.author.tag} - ${settings.guildName}`)
             message.channel.send(helpInfo)
         }
