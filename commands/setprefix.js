@@ -41,7 +41,9 @@ module.exports = {
                 .addField("Current Prefix:", `\`${settings.prefix}\``)
                 .addField("Change Prefix:", `\`${settings.prefix}prefix <New Prefix>\``)
                 .setTimestamp()
-            return message.channel.send(noPrefix).then(m => m.delete({timeout: 10000}));
+            return message.channel.send(noPrefix).then(m => m.delete({
+                timeout: 10000
+            }));
         };
         if (args[1].length > 3) {
             const tooLong = new Discord.MessageEmbed()
@@ -51,15 +53,27 @@ module.exports = {
                 timeout: 10000
             }));
         }
+        if (args[1] === "reset") {
+            await settings.updateOne({
+                prefix: "!!"
+            })
+            const resetPrefix = new Discord.MessageEmbed()
+                .setTitle("Prefix")
+                .setColor("GREEN")
+                .setDescription(":white_check_mark: Prefix reset to `!!`")
+        } else {
+            await settings.updateOne({
+                prefix: args[1]
+            });
+            const setPrefix = new Discord.MessageEmbed()
+                .setTitle("Prefix")
+                .setColor(`${settings.color}`)
+                .addField("Prefix Updated", `Your guild's prefix has been updated to \`${args[1]}\``)
+                .setTimestamp()
+            return message.channel.send(setPrefix).then(m => m.delete({
+                timeout: 10000
+            }));
+        }
 
-        await settings.updateOne({
-            prefix: args[1]
-        });
-        const setPrefix = new Discord.MessageEmbed()
-            .setTitle("Prefix")
-            .setColor(`${settings.color}`)
-            .addField("Prefix Updated", `Your guild's prefix has been updated to \`${args[1]}\``)
-            .setTimestamp()
-        return message.channel.send(setPrefix).then(m => m.delete({timeout: 10000}));
     }
 }
