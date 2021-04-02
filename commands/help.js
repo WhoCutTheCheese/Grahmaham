@@ -72,7 +72,7 @@ module.exports = {
                 .setTitle("Help Information")
                 .setColor(settings.color)
                 .setDescription("Information on the `SETCOLOR` command.")
-                .setDescription(":x: THIS IS A PREMIUM FEATURE \nSOON™️")
+                .setDescription(":star: THIS IS A PREMIUM FEATURE \n**SOON™️**")
                 .addField("Permissions:", "`MANAGE_SERVER`")
                 .addField("Command Details:", "Change the embed color for your server.")
                 .addField("Usage:", `\`${settings.prefix}setcolor <HEX CODE> (Leave the # out or it wont work.)\``)
