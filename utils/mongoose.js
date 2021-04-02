@@ -5,12 +5,7 @@ module.exports = {
         const dbOptions = {
             useNewUrlParser: true,
             useUnifiedTopology: true,
-            autoIndex: false,
-            reconnectTries: Number.MAX_VALUE,
-            reconnectInterval: 500,
-            poolSize: 5,
-            connectTimeoutMS: 10000,
-            family:4
+            useFindAndModify: false,
         };
 
         mongoose.connect("mongodb+srv://Zironic_Dev:CheeseCake101@cluster0.3ud4r.mongodb.net/Cluster0?retryWrites=true&w=majority", dbOptions);
