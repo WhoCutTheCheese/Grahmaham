@@ -37,7 +37,11 @@ bot.on("guildCreate", async guild => {
 bot.on('message', async message => {
     const settings = await Guild.findOne({ guildID: message.guild.id })
     const prefix = `${settings.prefix}`;
-    if (!message.content.toLowerCase().startsWith(prefix) && message.content.toLowerCase().startsWith(`<@!733885185497497682>`)) { message.channel.send(`**PING!** My prefix for this server is: \`${prefix}\``); return;}
+    const ping = new Discord.MessageEmbed()
+        .setTitle("Prefix")
+        .setColor(settings.color)
+        .addField("Server Prefix", `The current server prefix is \`${settings.prefix}\`.\nUse \`${settings.prefix}prefix reset\` to reset the server prefix.`)
+    if (!message.content.toLowerCase().startsWith(prefix) && message.content.toLowerCase().startsWith(`<@!733885185497497682>`)) { message.channel.send(ping); return;}
 
     if (!message.content.startsWith(prefix)) return;
 
