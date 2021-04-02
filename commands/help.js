@@ -78,5 +78,6 @@ module.exports = {
                 .addField("Usage:", `\`${settings.prefix}setcolor <HEX CODE>\``)
                 .setFooter(`${message.author.tag} - ${settings.guildName}`)
             message.channel.send(helpInfo)
-        }    }
+        }    
+    }
 }

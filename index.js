@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 const bot = new Discord.Client();
 const fs = require('fs');
 const mongoose = require('mongoose');
-const version = "ALPHA-1.0.2";
+const version = "ALPHA-1.0.3";
 const Guild = require("./models/prefix");
 bot.on('ready', () => {
     console.log(`Grahmaham Version: ${version} is starting...`);
@@ -30,6 +30,8 @@ bot.on("guildCreate", async guild => {
         guildName: guild.name,
         prefix: "!!",
         color: "ff5959",
+        premium: false,
+        tokens: 0
     });
     newGuild.save().catch(err => console.log(err));
 });
