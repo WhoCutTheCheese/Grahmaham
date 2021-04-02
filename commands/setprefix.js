@@ -54,6 +54,7 @@ module.exports = {
                 .setTitle("Prefix")
                 .setColor("GREEN")
                 .setDescription(":white_check_mark: Prefix reset to `!!`")
+            message.channel.send(resetPrefix)
         } else {
             if (args[1].length > 3) {
                 const tooLong = new Discord.MessageEmbed()
