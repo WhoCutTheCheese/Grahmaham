@@ -45,14 +45,7 @@ module.exports = {
                 timeout: 10000
             }));
         };
-        if (args[1].length > 3) {
-            const tooLong = new Discord.MessageEmbed()
-                .setDescription(":x: This prefix is too long, please choose another.")
-                .setColor("RED")
-            return message.channel.send(tooLong).then(m => m.delete({
-                timeout: 10000
-            }));
-        }
+
         if (args[1] === "reset") {
             await settings.updateOne({
                 prefix: "!!"
@@ -62,17 +55,26 @@ module.exports = {
                 .setColor("GREEN")
                 .setDescription(":white_check_mark: Prefix reset to `!!`")
         } else {
-            await settings.updateOne({
-                prefix: args[1]
-            });
-            const setPrefix = new Discord.MessageEmbed()
-                .setTitle("Prefix")
-                .setColor(`${settings.color}`)
-                .addField("Prefix Updated", `Your guild's prefix has been updated to \`${args[1]}\``)
-                .setTimestamp()
-            return message.channel.send(setPrefix).then(m => m.delete({
-                timeout: 10000
-            }));
+            if (args[1].length > 3) {
+                const tooLong = new Discord.MessageEmbed()
+                    .setDescription(":x: This prefix is too long, please choose another.")
+                    .setColor("RED")
+                return message.channel.send(tooLong).then(m => m.delete({
+                    timeout: 10000
+                }));
+            } else {
+                await settings.updateOne({
+                    prefix: args[1]
+                });
+                const setPrefix = new Discord.MessageEmbed()
+                    .setTitle("Prefix")
+                    .setColor(`${settings.color}`)
+                    .addField("Prefix Updated", `Your guild's prefix has been updated to \`${args[1]}\``)
+                    .setTimestamp()
+                return message.channel.send(setPrefix).then(m => m.delete({
+                    timeout: 10000
+                }));
+            }
         }
 
     }
