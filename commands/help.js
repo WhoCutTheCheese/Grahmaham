@@ -33,8 +33,18 @@ module.exports = {
                 .setDescription(`Use \`${settings.prefix}help <command>\` for more information on a command.`)
                 .addField("Information", `\`${settings.prefix}help\`, \`${settings.prefix}serverinfo\`, \`${settings.prefix}userinfo\``)
                 .addField("Utility", `\`${settings.prefix}prefix\`, \`${settings.prefix}logs\``)
+                .addField("Premium", `\`${settings.prefix}premium\`, \`${settings.prefix}setcolor\``)
                 .setFooter(`${message.author.tag} - ${settings.guildName}`)
             message.channel.send(helpMenu)
+        } else if (args[1] === "help") {
+            const helpInfo = new Discord.MessageEmbed()
+                .setTitle("Help Information")
+                .setColor(settings.color)
+                .setDescription("Information on the `HELP` command.")
+                .addField("Permissions:", "`EVERYONE`")
+                .addField("Command Details:", "Displays every command available in your server.")
+                .setFooter(`${message.author.tag} - ${settings.guildName}`)
+            message.channel.send(helpInfo)
         }
     }
 }
