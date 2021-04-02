@@ -32,7 +32,11 @@ bot.on("guildCreate", async guild => {
         color: "ff5959",
     });
     newGuild.save().catch(err => console.log(err));
-
+});
+bot.on('guildDelete', async guild => {
+    await sConfig.findOneAndRemove({
+        guildID: guild.id
+    })
 });
 bot.on('message', async message => {
     const settings = await Guild.findOne({ guildID: message.guild.id })

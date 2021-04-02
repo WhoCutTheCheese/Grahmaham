@@ -75,7 +75,7 @@ module.exports = {
                 .setDescription(":star: THIS IS A PREMIUM FEATURE \n**SOON™️**")
                 .addField("Permissions:", "`MANAGE_SERVER`")
                 .addField("Command Details:", "Change the embed color for your server.")
-                .addField("Usage:", `\`${settings.prefix}setcolor <HEX CODE> (Leave the # out or it wont work.)\``)
+                .addField("Usage:", `\`${settings.prefix}setcolor <HEX CODE>\``)
                 .setFooter(`${message.author.tag} - ${settings.guildName}`)
             message.channel.send(helpInfo)
         }    }
