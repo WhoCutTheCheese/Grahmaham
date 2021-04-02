@@ -37,6 +37,7 @@ bot.on("guildCreate", async guild => {
 bot.on('message', async message => {
     const settings = await Guild.findOne({ guildID: message.guild.id })
     const prefix = `${settings.prefix}`;
+    if (err) return
     const ping = new Discord.MessageEmbed()
         .setTitle("Prefix")
         .setColor(settings.color)
