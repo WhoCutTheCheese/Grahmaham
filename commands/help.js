@@ -60,13 +60,23 @@ module.exports = {
             const helpInfo = new Discord.MessageEmbed()
                 .setTitle("Help Information")
                 .setColor(settings.color)
-                .setDescription("Information on the `logs` command.")
+                .setDescription("Information on the `LOGS` command.")
                 .setDescription("SOON™️")
                 .addField("Permissions:", "`MANAGE_SERVER`")
                 .addField("Command Details:", "Set a log channel and edit and customize logs.")
                 .addField("Usage:", `\`${settings.prefix}logs\` \n \n\`setmessagechannel <#channel>\`, \n\`setchanneleditchannel <#channel>\`, \n\`setrolechannel <#channel>\`, \n\`setbanchannel <#channel>\``)
                 .setFooter(`${message.author.tag} - ${settings.guildName}`)
             message.channel.send(helpInfo)
-        }
-    }
+        } else if (args[1] === "setcolor") {
+            const helpInfo = new Discord.MessageEmbed()
+                .setTitle("Help Information")
+                .setColor(settings.color)
+                .setDescription("Information on the `SETCOLOR` command.")
+                .setDescription(":x: THIS IS A PREMIUM FEATURE \nSOON™️")
+                .addField("Permissions:", "`MANAGE_SERVER`")
+                .addField("Command Details:", "Change the embed color for your server.")
+                .addField("Usage:", `\`${settings.prefix}setcolor <HEX CODE> (Leave the # out or it wont work.)\``)
+                .setFooter(`${message.author.tag} - ${settings.guildName}`)
+            message.channel.send(helpInfo)
+        }    }
 }
