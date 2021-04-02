@@ -1,4 +1,4 @@
-const Guild = require("../models/prefix");
+const Guild = require("../models/guild");
 const Discord = require('discord.js')
 module.exports = {
     name: 'prefix',

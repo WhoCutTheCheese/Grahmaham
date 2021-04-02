@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-const Guild = require("../models/prefix"); 
+const Guild = require("../models/guild"); 
 module.exports = {
     name: 'help',
     description: 'List of functions and commands of the bot.',

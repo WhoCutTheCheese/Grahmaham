@@ -3,7 +3,7 @@ const bot = new Discord.Client();
 const fs = require('fs');
 const mongoose = require('mongoose');
 const version = "ALPHA-1.0.3";
-const Guild = require("./models/prefix");
+const Guild = require("./models/guild");
 bot.on('ready', () => {
     console.log(`Grahmaham Version: ${version} is starting...`);
     console.log(` `)
