@@ -4,7 +4,6 @@ const fs = require('fs');
 const mongoose = require('mongoose');
 const version = "ALPHA-1.0.2";
 const Guild = require("./models/prefix");
-const settings = await Guild.findOne({ guildID: message.guild.id })
 bot.on('ready', () => {
     console.log(`Grahmaham Version: ${version} is starting...`);
     console.log(` `)
@@ -36,6 +35,8 @@ bot.on("guildCreate", async guild => {
 
 });
 bot.on('message', async message => {
+    const settings = await Guild.findOne({ guildID: message.guild.id })
+
     console.log(Guild)
     const prefix = settings.prefix;
     if (!message.content.startsWith(prefix)) return;
