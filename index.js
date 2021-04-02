@@ -36,8 +36,7 @@ bot.on("guildCreate", async guild => {
 });
 bot.on('message', async message => {
     const settings = await Guild.findOne({ guildID: message.guild.id })
-    console.log(settings.prefix)
-    const prefix = settings.prefix;
+    const prefix = `${settings.prefix}`;
     if (!message.content.startsWith(prefix)) return;
 
 
