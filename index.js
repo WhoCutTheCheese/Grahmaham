@@ -4,6 +4,7 @@ const fs = require('fs');
 const mongoose = require('mongoose');
 const version = "ALPHA-1.0.3";
 const Guild = require("./models/guild");
+const Tokens = require("./models/tokens");
 bot.on('ready', () => {
     console.log(`Grahmaham Version: ${version} is starting...`);
     console.log(` `)
@@ -31,9 +32,9 @@ bot.on("guildCreate", async guild => {
         prefix: "!!",
         color: "ff5959",
         premium: false,
-        tokens: 0
-    });
+    })
     newGuild.save().catch(err => console.log(err));
+
 });
 bot.on('guildDelete', async guild => {
     await sConfig.findOneAndRemove({
@@ -41,6 +42,24 @@ bot.on('guildDelete', async guild => {
     })
 });
 bot.on('message', async message => {
+    const pTokens = await Tokens.findOne({
+        userID: message.author.id
+    }, (err, guild) => {
+        if (err) console.log(err)
+        if (!guild) {
+            const newTokens = new Tokens({
+                userID: message.author.id,
+                userName: message.author.tag,
+                tokens: 0,
+            })
+            newTokens.save().catch(err => console.log(err));
+        }
+    })
+    const newTokens = new Tokens({
+        userID: message.author.id,
+        userName: message.author.tag,
+        tokens: 0,
+    })
     const settings = await Guild.findOne({ guildID: message.guild.id })
     const prefix = `${settings.prefix}`;
     const ping = new Discord.MessageEmbed()

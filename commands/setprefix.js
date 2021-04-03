@@ -21,6 +21,7 @@ module.exports = {
                     guildName: message.guild.name,
                     prefix: "!!",
                     color: `ff5959`,
+                    premium: false,
                 })
 
                 newGuild.save()
