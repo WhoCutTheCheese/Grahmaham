@@ -42,6 +42,9 @@ bot.on('guildDelete', async guild => {
     })
 });
 bot.on('message', async message => {
+    const settings = await Guild.findOne({
+        guildID: message.guild.id
+    })
     // const pTokens = await Tokens.findOne({
     //     userID: message.author.id
     // }, (err, guild) => {
@@ -60,9 +63,7 @@ bot.on('message', async message => {
     //     userName: message.author.tag,
     //     tokens: 0,
     // })
-    const settings = await Guild.findOne({
-        guildID: message.guild.id
-    })
+
     const ping = new Discord.MessageEmbed()
         .setTitle("Prefix")
         .setColor(`${settings.color}`)
