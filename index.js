@@ -55,13 +55,13 @@ bot.on('message', async message => {
     //         newTokens.save().catch(err => console.log(err));
     //     }
     // })
-    const newTokens = new Tokens({
-        userID: message.author.id,
-        userName: message.author.tag,
-        tokens: 0,
-    })
+    // const newTokens = new Tokens({
+    //     userID: message.author.id,
+    //     userName: message.author.tag,
+    //     tokens: 0,
+    // })
     const settings = await Guild.findOne({ guildID: message.guild.id })
-    const prefix = `${settings.prefix}`;
+    const prefix = settings.prefix;
     const ping = new Discord.MessageEmbed()
         .setTitle("Prefix")
         .setColor(settings.color)
