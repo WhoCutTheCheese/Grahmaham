@@ -65,8 +65,9 @@ bot.on('message', async message => {
     })
     const ping = new Discord.MessageEmbed()
         .setTitle("Prefix")
-        .setColor(settings.color)
+        .setColor(`${settings.color}`)
         .addField("Server Prefix", `The current server prefix is \`${settings.prefix}\`.\nUse \`${settings.prefix}prefix reset\` to reset the server prefix.`)
+
     const prefix = `${settings.prefix}`;
 
     if (!message.content.toLowerCase().startsWith(prefix) && message.content.toLowerCase().startsWith(`<@!733885185497497682>`)) {
