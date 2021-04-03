@@ -42,19 +42,19 @@ bot.on('guildDelete', async guild => {
     })
 });
 bot.on('message', async message => {
-    const pTokens = await Tokens.findOne({
-        userID: message.author.id
-    }, (err, guild) => {
-        if (err) console.log(err)
-        if (!guild) {
-            const newTokens = new Tokens({
-                userID: message.author.id,
-                userName: message.author.tag,
-                tokens: 0,
-            })
-            newTokens.save().catch(err => console.log(err));
-        }
-    })
+    // const pTokens = await Tokens.findOne({
+    //     userID: message.author.id
+    // }, (err, guild) => {
+    //     if (err) console.log(err)
+    //     if (!guild) {
+    //         const newTokens = new Tokens({
+    //             userID: message.author.id,
+    //             userName: message.author.tag,
+    //             tokens: 0,
+    //         })
+    //         newTokens.save().catch(err => console.log(err));
+    //     }
+    // })
     const newTokens = new Tokens({
         userID: message.author.id,
         userName: message.author.tag,
