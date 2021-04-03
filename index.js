@@ -16,9 +16,9 @@ bot.on('ready', () => {
 });
 bot.commands = new Discord.Collection();
 const commandFiles = fs.readdirSync('./commands/').filter(file => file.endsWith('.js'));
-for(const file of commandFiles){
+for (const file of commandFiles) {
     const command = require(`./commands/${file}`);
- 
+
     bot.commands.set(command.name, command);
 }
 const noPermissions = new Discord.MessageEmbed()
@@ -60,13 +60,19 @@ bot.on('message', async message => {
     //     userName: message.author.tag,
     //     tokens: 0,
     // })
-    const settings = await Guild.findOne({ guildID: message.guild.id })
-    const prefix = settings.prefix;
+    const settings = await Guild.findOne({
+        guildID: message.guild.id
+    })
     const ping = new Discord.MessageEmbed()
         .setTitle("Prefix")
         .setColor(settings.color)
         .addField("Server Prefix", `The current server prefix is \`${settings.prefix}\`.\nUse \`${settings.prefix}prefix reset\` to reset the server prefix.`)
-    if (!message.content.toLowerCase().startsWith(prefix) && message.content.toLowerCase().startsWith(`<@!733885185497497682>`)) { message.channel.send(ping); return;}
+    const prefix = `${settings.prefix}`;
+
+    if (!message.content.toLowerCase().startsWith(prefix) && message.content.toLowerCase().startsWith(`<@!733885185497497682>`)) {
+        message.channel.send(ping);
+        return;
+    }
 
     if (!message.content.startsWith(prefix)) return;
 
