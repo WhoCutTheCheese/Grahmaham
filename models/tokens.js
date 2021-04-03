@@ -4,7 +4,6 @@ let Schema = new mongoose.Schema({
     userID: String,
     guildID: String,
     guildName: String,
-    userName: String,
     tokens: Number,
 })
 module.exports = mongoose.model('tokens', Schema)

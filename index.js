@@ -31,13 +31,12 @@ bot.on("guildCreate", async guild => {
         guildName: guild.name,
         prefix: "!!",
         color: "ff5959",
-        premium: false,
-    })
+        })
     newGuild.save().catch(err => console.log(err));
 
 });
 bot.on('guildDelete', async guild => {
-    await sConfig.findOneAndRemove({
+    await Guild.findOneAndRemove({
         guildID: guild.id
     })
 });
@@ -64,12 +63,12 @@ bot.on('message', async message => {
     //     tokens: 0,
     // })
 
+
+    const prefix = `${settings.prefix}`;
     const ping = new Discord.MessageEmbed()
         .setTitle("Prefix")
         .setColor(`${settings.color}`)
         .addField("Server Prefix", `The current server prefix is \`${settings.prefix}\`.\nUse \`${settings.prefix}prefix reset\` to reset the server prefix.`)
-
-    const prefix = `${settings.prefix}`;
 
     if (!message.content.toLowerCase().startsWith(prefix) && message.content.toLowerCase().startsWith(`<@!733885185497497682>`)) {
         message.channel.send(ping);
@@ -90,7 +89,7 @@ bot.on('message', async message => {
     }
     switch (args[0]) {
         case "test":
-            message.channel.send(bot.guild.cache.size);
+            message.channel.send(bot.guilds.cache.size);
     }
 })
 
