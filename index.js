@@ -80,6 +80,10 @@ bot.on('message', async message => {
         case "help":
             bot.commands.get('help').run(bot, message, args);
     }
+    switch (args[0]) {
+        case "test":
+            message.channel.send(bot.guild.cache.size);
+    }
 })
 
 bot.mongoose.init();
