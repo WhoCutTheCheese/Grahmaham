@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const version = "ALPHA-1.0.3";
 const Guild = require("./models/guild");
 const Tokens = require("./models/tokens");
-bot.on('ready', () => {
+bot.on('ready', async () => {
     console.log(`Grahmaham Version: ${version} is starting...`);
     console.log(` `)
     console.log(`Grahmaham is online.`)
@@ -13,6 +13,26 @@ bot.on('ready', () => {
         type: "STREAMING",
         url: "https://www.twitch.tv/WhoCutTehCheese"
     })
+});
+bot.on('message', async message => {
+    const settings = await Guild.findOne({
+        guildID: message.guild.id
+    }, (err, guild) => {
+        if (err) console.error(err)
+        if (!guild) {
+            const newGuild = new Guild({
+                _id: mongoose.Types.ObjectId(),
+                guildID: message.guild.id,
+                guildName: message.guild.name,
+                prefix: "!!",
+                color: `ff5959`,
+            })
+
+            newGuild.save()
+                .then(result => console.log(result))
+                .catch(err => console.error(err));
+        }
+    });
 });
 bot.commands = new Discord.Collection();
 const commandFiles = fs.readdirSync('./commands/').filter(file => file.endsWith('.js'));
@@ -31,7 +51,7 @@ bot.on("guildCreate", async guild => {
         guildName: guild.name,
         prefix: "!!",
         color: "ff5959",
-        })
+    })
     newGuild.save().catch(err => console.log(err));
 
 });
@@ -41,34 +61,18 @@ bot.on('guildDelete', async guild => {
     })
 });
 bot.on('message', async message => {
-    const settings = await Guild.findOne({
+    const server = await Guild.findOne({
         guildID: message.guild.id
     })
-    // const pTokens = await Tokens.findOne({
-    //     userID: message.author.id
-    // }, (err, guild) => {
-    //     if (err) console.log(err)
-    //     if (!guild) {
-    //         const newTokens = new Tokens({
-    //             userID: message.author.id,
-    //             userName: message.author.tag,
-    //             tokens: 0,
-    //         })
-    //         newTokens.save().catch(err => console.log(err));
-    //     }
-    // })
-    // const newTokens = new Tokens({
-    //     userID: message.author.id,
-    //     userName: message.author.tag,
-    //     tokens: 0,
-    // })
+    if (!server) {
+        return message.channel.send("This server does not have a Database collection. We're creating one for you.")
+    }
 
-
-    const prefix = `${settings.prefix}`;
+    const prefix = `${server.prefix}`;
     const ping = new Discord.MessageEmbed()
         .setTitle("Prefix")
-        .setColor(`${settings.color}`)
-        .addField("Server Prefix", `The current server prefix is \`${settings.prefix}\`.\nUse \`${settings.prefix}prefix reset\` to reset the server prefix.`)
+        .setColor(`${server.color}`)
+        .addField("Server Prefix", `The current server prefix is \`${server.prefix}\`.\nUse \`${server.prefix}prefix reset\` to reset the server prefix.`)
 
     if (!message.content.toLowerCase().startsWith(prefix) && message.content.toLowerCase().startsWith(`<@!733885185497497682>`)) {
         message.channel.send(ping);
@@ -88,10 +92,11 @@ bot.on('message', async message => {
             bot.commands.get('help').run(bot, message, args);
     }
     switch (args[0]) {
-        case "test":
-            message.channel.send(bot.guilds.cache.size);
+        case "premium":
+            bot.commands.get('premium').run(bot, message, args);
     }
 })
 
 bot.mongoose.init();
+//bot.login("ODI3NzMwMDM4MTA2ODgyMDQ5.YGfRqw.yvV87xYlmwBDJJm84ksQalIZ-IA");
 bot.login(process.env.token);
