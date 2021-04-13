@@ -111,6 +111,9 @@ bot.on('message', async message => {
         case "userinfo":
             bot.commands.get('userinfo').run(bot, message, args);
             break
+        case "logs":
+            bot.commands.get('logs').run(bot, message, args);
+            break
     }
 })
 
