@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 const bot = new Discord.Client();
 const fs = require('fs');
 const mongoose = require('mongoose');
-const version = "ALPHA-1.0.3";
+const version = "ALPHA-1.1.0";
 const Guild = require("./models/guild");
 const Tokens = require("./models/tokens");
 bot.on('ready', async () => {
@@ -33,6 +33,9 @@ bot.on('message', async message => {
                 .catch(err => console.error(err));
         }
     });
+    const token = await Tokens.findOne({
+        guildID: message.guild.id
+    })
 });
 bot.commands = new Discord.Collection();
 const commandFiles = fs.readdirSync('./commands/').filter(file => file.endsWith('.js'));
@@ -74,10 +77,13 @@ bot.on('message', async message => {
         .setColor(`${server.color}`)
         .addField("Server Prefix", `The current server prefix is \`${server.prefix}\`.\nUse \`${server.prefix}prefix reset\` to reset the server prefix.`)
 
-    if (!message.content.toLowerCase().startsWith(prefix) && message.content.toLowerCase().startsWith(`<@!733885185497497682>`)) {
-        message.channel.send(ping);
-        return;
+    if (message.author.bot) return;
+    if (message.mentions.members.first()) {
+        if (message.mentions.members.first().id == '827730038106882049') {
+            message.channel.send(ping)
+        }
     }
+
 
     if (!message.content.startsWith(prefix)) return;
 
@@ -86,17 +92,28 @@ bot.on('message', async message => {
     switch (args[0]) {
         case "prefix":
             bot.commands.get('prefix').run(bot, message, args);
-    }
-    switch (args[0]) {
+            break
+        case "givepremium":
+            bot.commands.get('givepremium').run(bot, message, args)
+            break
+        case "premium":
+            bot.commands.get('premium').run(bot, message, args)
+            break
         case "help":
             bot.commands.get('help').run(bot, message, args);
-    }
-    switch (args[0]) {
-        case "premium":
-            bot.commands.get('premium').run(bot, message, args);
+            break
+        case "color":
+            bot.commands.get('color').run(bot, message, args);
+            break
+        case "serverinfo":
+            bot.commands.get('serverinfo').run(bot, message, args);
+            break
+        case "userinfo":
+            bot.commands.get('userinfo').run(bot, message, args);
+            break
     }
 })
 
 bot.mongoose.init();
-//bot.login("ODI3NzMwMDM4MTA2ODgyMDQ5.YGfRqw.yvV87xYlmwBDJJm84ksQalIZ-IA");
-bot.login(process.env.token);
+bot.login("ODI3NzMwMDM4MTA2ODgyMDQ5.YGfRqw.PH6cV1QIGLKBiUU4IX0ufjONucI");
+//bot.login(process.env.token);
