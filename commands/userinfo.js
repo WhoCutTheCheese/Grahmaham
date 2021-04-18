@@ -8,7 +8,7 @@ module.exports = {
 		let user = message.mentions.members.first() || message.guild.members.cache.get(args[1])
 		if (!user) return
 		const embed = new Discord.MessageEmbed()
-			.setThumbnail(user.user.displayAvatarURL())
+			.setThumbnail(user.user.displayAvatarURL({dynamic: true}))
 			.setColor(user.displayHexColor)
 			.setTitle(user.user.username)
 			.setTimestamp()

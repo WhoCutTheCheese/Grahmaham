@@ -65,7 +65,7 @@ module.exports = {
                 .setDescription("Information on the `LOGS` command.\nUse `logs help <module>` for information on that module.\n**SOON™️**")
                 .addField("Permissions:", "`MANAGE_SERVER`")
                 .addField("Command Details:", "Set a log channel and edit and customize logs.")
-                .addField("Usage:", `\`${settings.prefix}logs\` \n \n\`setmessagechannel <#channel>\`, \`setchanneleditchannel <#channel>\`, \n\`setrolechannel <#channel>\`, \`setbanchannel <#channel>\``)
+                .addField("Usage:", `\`${settings.prefix}logs\` \n \n\`setmessagechannel <#channel>\`, \`setchannellogging <#channel>\`, \n\`setrolechannel <#channel>\`, \`setmodchannel <#channel>\``)
                 .setFooter(footer)
             message.channel.send(helpInfo)
         } else if (args[1] === "color") {

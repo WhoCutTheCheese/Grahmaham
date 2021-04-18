@@ -1,19 +1,30 @@
 const Discord = require('discord.js');
-const bot = new Discord.Client();
+const version = "ALPHA-1.1.0";
+const bot = new Discord.Client({
+    presence: {
+        status: "dnd",
+        activity: {
+            name: `!!help | ${version}`,
+            type: 'STREAMING',
+            url: "https://youtube.com/whocutthecheese"
+        }
+    }
+});
 const fs = require('fs');
 const mongoose = require('mongoose');
-const version = "ALPHA-1.1.0";
 const Guild = require("./models/guild");
 const Tokens = require("./models/tokens");
+const Logs = require('./models/logs');
 bot.on('ready', async () => {
     console.log(`Grahmaham Version: ${version} is starting...`);
     console.log(` `)
     console.log(`Grahmaham is online.`)
-    bot.user.setActivity(`${version} | !!help`, {
-        type: "STREAMING",
-        url: "https://www.twitch.tv/WhoCutTehCheese"
-    })
+    // bot.user.setActivity(`${version} | !!help`, {
+    //     type: "STREAMING",
+    //     url: "https://www.twitch.tv/WhoCutTehCheese"
+    // })
 });
+
 bot.on('message', async message => {
     const settings = await Guild.findOne({
         guildID: message.guild.id
@@ -116,7 +127,7 @@ bot.on('message', async message => {
             break
     }
 })
-
+require("./logging/logs")(bot);
 bot.mongoose.init();
 bot.login("ODI3NzMwMDM4MTA2ODgyMDQ5.YGfRqw.PH6cV1QIGLKBiUU4IX0ufjONucI");
 //bot.login(process.env.token);
