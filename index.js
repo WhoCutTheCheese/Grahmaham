@@ -19,10 +19,6 @@ bot.on('ready', async () => {
     console.log(`Grahmaham Version: ${version} is starting...`);
     console.log(` `)
     console.log(`Grahmaham is online.`)
-    // bot.user.setActivity(`${version} | !!help`, {
-    //     type: "STREAMING",
-    //     url: "https://www.twitch.tv/WhoCutTehCheese"
-    // })
 });
 
 bot.on('message', async message => {
@@ -75,6 +71,15 @@ bot.on('guildDelete', async guild => {
     })
 });
 bot.on('message', async message => {
+    // if (!message.guild.me.hasPermission('EMBED_LINKS')) { return; }
+    // if (!message.guild.me.hasPermission('SEND_MESSAGES')) { return; }
+    // if (!message.guild.me.hasPermission('VIEW_CHANNEL')) { return; }
+    // if (!message.guild.me.hasPermission('ATTACH_FILES')) { return; }
+    // if (!message.guild.me.hasPermission('USE_EXTERNAL_EMOJI')) { return; }
+    // if (!message.guild.me.hasPermission('MANAGE_MESSAGES')) { return; }
+    // if (!message.guild.me.hasPermission('READ_MESSAGE_HISTORY')) { return; }
+
+
     const server = await Guild.findOne({
         guildID: message.guild.id
     })
@@ -111,6 +116,9 @@ bot.on('message', async message => {
             bot.commands.get('premium').run(bot, message, args)
             break
         case "help":
+            if(!message.guild.me.hasPermission("SEND_MESSAGES")) return;
+            if(!message.guild.me.hasPermission("EMBED_LINKS")) return;
+
             bot.commands.get('help').run(bot, message, args);
             break
         case "color":
@@ -126,6 +134,8 @@ bot.on('message', async message => {
             bot.commands.get('logs').run(bot, message, args);
             break
     }
+
+
 })
 require("./logging/logs")(bot);
 bot.mongoose.init();
