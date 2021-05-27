@@ -3,7 +3,6 @@ const Guild = require('../models/guild');
 const Token = require('../models/tokens');
 const Logs = require('../models/logs');
 module.exports = async (bot) => {
-
     console.log("Loaded module: LOGGING successfully!")
     try {
         bot.on('channelCreate', async function (channel) {
@@ -13,6 +12,7 @@ module.exports = async (bot) => {
             const logs = await Logs.findOne({
                 guildID: channel.guild.id
             })
+            if(!channel.guild.me.hasPermission('VIEW_AUDIT_LOG', 'SEND_MESSAGES')) { return; }
             const AuditLogFetch = await channel.guild.fetchAuditLogs({
                 limit: 1,
                 type: "CHANNEL_CREATE"

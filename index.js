@@ -71,13 +71,8 @@ bot.on('guildDelete', async guild => {
     })
 });
 bot.on('message', async message => {
-    // if (!message.guild.me.hasPermission('EMBED_LINKS')) { return; }
-    // if (!message.guild.me.hasPermission('SEND_MESSAGES')) { return; }
-    // if (!message.guild.me.hasPermission('VIEW_CHANNEL')) { return; }
-    // if (!message.guild.me.hasPermission('ATTACH_FILES')) { return; }
-    // if (!message.guild.me.hasPermission('USE_EXTERNAL_EMOJI')) { return; }
-    // if (!message.guild.me.hasPermission('MANAGE_MESSAGES')) { return; }
-    // if (!message.guild.me.hasPermission('READ_MESSAGE_HISTORY')) { return; }
+    if (!message.guild.me.hasPermission("SEND_MESSAGES", "EMBED_LINKS")) { return; }
+    if (message.channel.permissionsFor(message.guild.me).has("SEND_MESSAGES", "EMBED_LINKS")) { return; }
 
 
     const server = await Guild.findOne({
@@ -116,9 +111,6 @@ bot.on('message', async message => {
             bot.commands.get('premium').run(bot, message, args)
             break
         case "help":
-            if(!message.guild.me.hasPermission("SEND_MESSAGES")) return;
-            if(!message.guild.me.hasPermission("EMBED_LINKS")) return;
-
             bot.commands.get('help').run(bot, message, args);
             break
         case "color":
@@ -132,6 +124,9 @@ bot.on('message', async message => {
             break
         case "logs":
             bot.commands.get('logs').run(bot, message, args);
+            break
+        case "check":
+            bot.commands.get('check').run(bot, message, args);
             break
     }
 

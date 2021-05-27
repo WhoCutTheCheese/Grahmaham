@@ -27,12 +27,14 @@ module.exports = {
                 .addField("`setchannellogging <#channel>`", "Sets a logging channel for events relating to channels. Such as when a channel name is changed it will log it.")
                 .addField("`setrolechannel <#channel>`", "Sets a logging channel for all events involving roles. When a role name is changed it logs it.")
                 .addField("`setmodchannel <#channel>`", "Sets a logging channel for all moderation events, such as when a user is banned it logs it.")
+                .addField("`setallchannels <#channel>`", "Sets all logging channels.")
                 .addField("Exempts:", "Add roles and users that the bot will not log.")
-                .addField("`bypassrole <@role/roleID>`", "Sets a role that Grahmaham will not log.")
-                .addField("`bypassuser <@user/userID>`", "Sets a user that Grahmaham will not log.")
+                .addField("`bypassrole <@role/roleID>`", "Set a role in which Grahmaham will ignore when logging.")
+                .addField("`bypassuser <@user/userID>`", "Set a user in which Grahmaham will ignore when logging.")
+                .addField("`bypasschannel <#channel>`", "Set a channel in which Grahmaham will ignore when logging.")
                 .addField("Other:", "Stuff that doesn't fit in the first 2 catagories.")
-                .addField("`quicksetup`", "Quickly setup all the logging componants.")
-                .setFooter(`${message.author.tag} ▪️ ${d.toLocaleTimeString()}`)
+                .addField("`quicksetup`", "Quickly setup all the essential logging componants.")
+                .setFooter(`${message.author.tag} ▪️ ${d.toLocaleTimeString()}`, message.author.displayAvatarURL({ dynamic: true }))
             message.channel.send(logsHelp)
         }
         if (args[1] === "setmessagechannel") {
