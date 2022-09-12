@@ -134,5 +134,5 @@ bot.on('message', async message => {
 })
 require("./logging/logs")(bot);
 bot.mongoose.init();
-bot.login("ODI3NzMwMDM4MTA2ODgyMDQ5.YGfRqw.PH6cV1QIGLKBiUU4IX0ufjONucI");
+bot.login("meow");
 //bot.login(process.env.token);
